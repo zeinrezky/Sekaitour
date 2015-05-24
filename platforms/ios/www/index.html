@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Sekai Tours</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" type="text/css" href="build/icons.css" />
+
+    <link rel="stylesheet" type="text/css" href="build/af.ui.css" />
+	
+    <link rel="stylesheet" type="text/css" href="build/custom.css" />
+    <link rel="stylesheet" type="text/css" href="build/grid_bs.css" />
+    <link rel="stylesheet" type="text/css" href="build/font-awesome-4.3.0/css/font-awesome.min.css" />
+
+     <script type="text/javascript" charset="utf-8" src="build/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="build/rawgit.js"></script>
+    <script type="text/javascript" charset="utf-8" src="src/af.shim.js"></script>
+    <script type="text/javascript" charset="utf-8" src="src/af.ui.js"></script>
+
+
+    <script src="src/af.desktopBrowsers.js"></script>
+    <script type="text/javascript" charset="utf-8" src="src/af.actionsheet.js"></script>
+    <script type="text/javascript" charset="utf-8" src="src/af.animation.js"></script>
+    <script type="text/javascript" charset="utf-8" src="src/af.touchEvents.js"></script>
+    <script type="text/javascript" charset="utf-8" src="src/af.popup.js"></script>
+    <script type="text/javascript" charset="utf-8" src="src/af.drawer.js"></script>
+    <script type="text/javascript" charset="utf-8" src="src/af.toast.js"></script>
+    <script type="text/javascript" charset="utf-8" src="src/af.animateheader.js"></script>
+    <script type="text/javascript" charset="utf-8" src="src/af.splashscreen.js"></script>
+    <script type="text/javascript" charset="utf-8" src="src/af.swipereveal.js"></script>
+
+
+    <script>
+    $.afui.useOSThemes=false;
+    $.afui.loadDefaultHash=true;
+    $.afui.autoLaunch=false;
+	
+
+    //check search
+    var search=document.location.search.toLowerCase().replace("?","");
+    if(search.length>0)
+    {
+
+       $.afui.useOSThemes=true;
+        if(search=="win8")
+            $.os.ie=true;
+        else if(search=="firefox")
+            $.os.fennec="true"
+        $.afui.ready(function(){
+            $(document.body).get(0).className=(search);
+        });
+    }
+
+    $(document).ready(function(){
+        $.afui.launch();
+    });
+
+    //if($.os.ios)
+        $.afui.animateHeader(true);
+		
+
+    </script>
+	<script>
+			function home(){
+				window.location = "index.html";
+			}
+			function flight(){
+				window.location = "flight.html";
+			}
+			function hotel(){
+				window.location = "hotel.html";
+			}
+			function tours(){
+				window.location = "tours.html";
+			}
+			function cruiser(){
+				window.location = "cruiser.html";
+			}
+			function domestic(){
+				window.location = "domestic.html";
+			}
+			function international(){
+				window.location = "international.html";
+			}
+			
+	</script>
+	
+<script>
+var pagesHistory = [];
+var currentPage = {};
+var path = "";
+
+currentPage = {};
+currentPage.init = function() {
+	console.log("listPromo :: init");
+};
+
+currentPage.detailPage = function(id) {
+	sessionStorage.setItem("id", id);
+	$("body").load(path + "pages/detail_promo.html");
+	$.getScript(path + "js/detail_promo.js", function() {
+		if (currentPage.init) {
+			currentPage.init();
+		}
+	});
+};
+	
+$.ajax({
+		type: "get",
+		url: "http://crocodic.net/sekaiapps/api/get_promo.php",
+		dataType: "json",
+		success: function(data) {
+			var ul = $('#hotPromo');
+			var html = '';
+			$.each(data.promo, function(index, item) {
+				html += '<li class="blue" style="cursor:pointer;">';
+				html += '<img class="img-circle" src="http://crocodic.net/sekaiapps/admin/tmp/'+item.image+'"/>';
+				html += '<a style="color:#5d5d5d; font-weight:bold;" onclick="currentPage.detailPage(' +
+					item.id + ');" >';
+				html += item.title;
+				html += '<p style="color:#232524; font-weight:normal;">';
+				html += item.deskripsi;
+				html += '</p>';
+				html += '<i class="fa fa-map-marker" style="color:#f2c60f; margin-top:4px; margin-right:5px; ">';
+				html += '</i>';
+				html += '<span style="font-weight:normal;">'+item.kategori+'</span>';
+				html += '</a></li>';
+			});
+			ul.append(html);
+		},
+		error: function() {
+			alert("List task failure");
+		}
+	});
+
+	
+$.ajax({
+		type: "get",
+		url: "http://crocodic.net/sekaiapps/api/get_about.php",
+		dataType: "json",
+		success: function(data) {
+			var ul = $('#aboutUs');
+			var html = '';
+			$.each(data.promo, function(index, item) {
+				html += '<p style="text-indent:20px; text-align:justify;">';
+				html += item.about;
+				html += '</p>';;
+			});
+			ul.append(html);
+		},
+		error: function() {
+			alert("List task failure");
+		}
+	});
+	
+
+</script>
+<script>
+	<!-- $(document).ready(function(){ 
+
+	<!-- var n = $("#info div");
+
+	<!-- if (n === "#info") {
+		<!-- $("footer").css("background", "green");
+	<!--} 
+	<!--else {
+	<!--	$("body").css("background", "orange");
+	<!--}
+
+<!--}); -->
+</script>
+	
+</head>
+<body>
+	 <div class="view" id="mainView">
+		<div class="pages">
+			<div class="panel" selected="true" id="main" >
+				<!-- <div class="border-top"></div> -->
+				<!-- <br> -->
+					<ul class="list">
+						<div class="image">
+								<img src="img/logo.png" class="img-logo">
+						</div>				
+					</ul>
+						<ul class="list" id="hotPromo">   
+								<div class="wrap-header"><span class="hot">Hot Promo</span><div class="line"></div></div>
+						</ul>
+			</div>
+			
+			<div class="panel" selected="true" id="books">
+				<!-- <div class="border-top"></div>
+					<br> -->
+					<ul class="list">
+						<div class="image">
+								<img src="img/logo.png" class="img-logo">
+						</div>				
+					</ul>
+						<ul class="list">  
+								<a  href="#" onClick="domestic()"><img src="img/book_domestic.png" class="books" width="100%"></a>	
+								<a  href="#" onClick="international()"><img src="img/book_international.png" class="books" width="100%"></a>
+						</ul>
+			</div>
+			
+			
+			<div class="panel" selected="true" id="services">
+				<!-- <div class="border-top"></div>
+					<br> -->
+					<ul class="list">
+						<div class="image">
+								<img src="img/logo.png" class="img-logo">
+						</div>				
+					</ul>
+						<ul class="list">
+						<div class="icon_services">
+						<br>
+								<img onClick="flight()" src="img/icon_flight.png" class="col-md-2 col-sm-2 col-xs-6 wrapper-img wrapper-img-one" />
+								<img onClick="hotel()" src="img/icon_hotel.png" class="col-md-2 col-sm-2 col-xs-6 wrapper-img" />
+								<img onClick="tours()" src="img/icon_tours.png" class="col-md-2 col-sm-2 col-xs-6 wrapper-img" />
+								<img onClick="cruiser()" src="img/icon_cruiser.png" class="col-md-2 col-sm-2 col-xs-6 wrapper-img"/>
+						</div>
+						</ul>
+			</div>
+			
+		
+			<div class="panel"  id="about" selected="true">
+				<!-- <div class="border-top"></div>
+					<br> -->
+					<ul class="list">
+						<div class="image">
+								<img src="img/logo.png" class="img-logo">
+						</div>				
+					</ul>
+						<ul class="list">
+							<img src="img/about_us.png" class="img-logo" style="padding:0px; margin-top:-1px;">
+						<div class="about" id="aboutUs"  style="padding :20px 10px 20px 10px;">
+							
+						</div>
+						</ul>
+            </div>
+		</div>
+			<footer>
+				<a href="#main" id='navbar_home' class=' fa fa-home'  data-transition="fade"><span class="margin">Home</span></a>
+                <a href="#books" id='navbar_js' class=" fa fa-book"  data-transition="fade"><span class="margin">Books</span></a>
+                <a href="#services" id='navbar_ui' class="fa fa-briefcase" data-transition="fade"><span class="margin">Services</span></a>
+                <a href="#about" style="border-right:none;" id='navbar_plugins' class="fa fa-info-circle" data-transition="fade"><span class="margin">Info</span></a>
+            </footer>
+</div>
+</body>
+</html>

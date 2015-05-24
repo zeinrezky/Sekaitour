@@ -1,0 +1,98 @@
+<script>
+function back(){
+	window.location = "index.html";
+}
+</script>
+<div class="view active" id="detailPage">
+	<div class="pages">
+		<div class="panel active" id="detail" >
+				<!-- <div class="border-top"></div>
+				<br> -->
+				
+					
+						<ul class="list">
+						<a class="backButton back-button" onClick="back()"></a>
+							<div class="image">
+								<img src="img/logo.png" class="img-logo" style="margin-bottom: 0 px; margin-top:10px;">
+							</div>	
+						</ul>
+						<ul class="list">
+												
+							
+						<div id="info">
+	
+						</div>
+						</ul>
+			</div>
+			<div class="panel" selected="true" id="books">
+				<!-- <div class="border-top"></div>
+					<br> -->
+					
+						<ul class="list">                     
+							<div class="image">
+							<img src="img/logo.png" class="img-logo" style="margin-bottom: -17px;">
+						</div>	
+									<a href="#" onClick="domestic()"><img src="img/book_domestic.png" class="books" width="100%"></a>	
+									<a  href="#" onClick="international()"><img src="img/book_international.png" class="books" width="100%"></a>
+						</ul>
+			</div>
+			<div class="panel" id="domestic">
+			<!-- <div class="border-top"></div>
+				<br> -->
+					<img src="img/logo.png" class="img-logo">
+						<ul class="list" id="taskList">                     
+						<div class="wrap-header"><span class="hot">BOOKS - DOMESTIC</span></div>
+						<iframe  src="http://rajatiket.co.id"></iframe>
+						</ul>
+            </div>
+			<div class="panel" id="international">
+			<!-- <div class="border-top"></div>
+				<br> -->
+					<img src="img/logo.png" class="img-logo">
+						<ul class="list" id="taskList">                     
+						<div class="wrap-header"><span class="hot">BOOKS - INTERNATIONAL</span></div>
+							<iframe  src="https://abacuswebstart.abacus.com.sg/sekai/mini-ibe.aspx?lang=en-US"></iframe>
+						</ul>
+            </div>
+			
+			<div class="panel" selected="true" id="services">
+				<!-- <div class="border-top"></div>
+					<br> -->
+					
+						<ul class="list">
+						<div class="image">
+								<img src="img/logo.png" class="img-logo" style=" margin-bottom: -17px;">
+							</div>	
+						<div class="icon_services">
+								<img onClick="flight()" src="img/icon_flight.png" class="col-md-2 col-sm-2 col-xs-6 wrapper-img wrapper-img-one" />
+								<img onClick="hotel()" src="img/icon_hotel.png" class="col-md-2 col-sm-2 col-xs-6 wrapper-img" />
+								<img onClick="tours()" src="img/icon_tours.png" class="col-md-2 col-sm-2 col-xs-6 wrapper-img" />
+								<img onClick="cruiser()" src="img/icon_cruiser.png" class="col-md-2 col-sm-2 col-xs-6 wrapper-img"/>
+						</div>
+						</ul>
+			</div>
+			
+		
+			<div class="panel"  id="about" selected="true">
+				<!-- <div class="border-top"></div>
+					<br> -->
+						<ul class="list">
+							<div class="image">
+								<img src="img/logo.png" class="img-logo" style="margin-bottom: -17px;">
+							</div>
+						<img src="img/about_us.png" class="img-logo" style="padding:0px; margin-top:-1px;">							
+						<div class="about" id="aboutUs"  style="padding :20px 10px 20px 10px;">
+							
+						</div>
+						</ul>
+            </div>
+						
+	</div>
+			<footer>
+				<a href="#main" id='navbar_home' onCLick="home()" class=' fa fa-home'  data-transition="fade"><span class="margin">Home</span></a>
+                <a href="#books" id='navbar_js' class=" fa fa-book"  data-transition="fade"><span class="margin">Books</span></a>
+                <a href="#services" id='navbar_ui' class="fa fa-briefcase" data-transition="fade"><span class="margin">Services</span></a>
+                   <a href="#about" style="border-right:none;" id='navbar_plugins' class="fa fa-info-circle" data-transition="fade"><span class="margin">Info</span></a>
+            </footer>
+</div>
+
